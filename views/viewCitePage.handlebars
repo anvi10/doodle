@@ -1,6 +1,18 @@
+        {{#if user}}
+
+            <script src="serverStorage.js">
+                
+            </script>
+       
+
+        {{else }}
+
+
         <script src="storage.js">
 
         </script>
+                
+        {{/if}}
 
 
             
@@ -33,8 +45,6 @@
                     
                     ul.appendChild(li);
                 });
-                
-                document.getElementById("annotation").value = "";
             }
          rendercitations();
         

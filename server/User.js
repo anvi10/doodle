@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var UserClass = mongoose.Schema({
     username: String,
     password: String,
-    citationlists: [mongoose.Schema.Types.ObjectId]
+    citations: [String]
 });
 
 UserClass.methods.verifyPassword = function(pw) {

@@ -1,25 +1,20 @@
 
-        <div class="boxed"> 
-            <center>
-                <hi> 
-                    Cite It!
-                </hi>
-   
-            </center>
-            
-            <subtitle> 
-                <center> 
-                    APA Citation Generator
-                </center>
-            </subtitle>
-        </div>
         
-        <br>
-        
+        {{#if user}}
+
+            <script src="serverStorage.js">
+                
+            </script>
+       
+
+        {{else }}
+
+
         <script src="storage.js">
 
         </script>
                 
+        {{/if}}
 
         <script>
           
@@ -31,6 +26,8 @@
             function saveCitation() {
               storageClient.addCitation(document.getElementById("citation").innerText);
             }
+            
+            console.log(storageClient);
         
         </script>
 
@@ -51,6 +48,7 @@
             </p>
             
             <div>
+                <center> 
                     <button onclick="saveCitation()">Save My Citation</button>
                 
                  <a href='/book'> 
@@ -60,6 +58,7 @@
                 <a href='/citationgeneration'> 
                     <button>Fill Out a Different Citation</button>
                 </a>
+                    </center>
             </div>
             
         </selection>

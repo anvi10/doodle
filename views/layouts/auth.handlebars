@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        
+        <style>
+            .boxed {
+                border: 4px solid green;
+            }
+            
+            #logo {
+                text-decoration: none;
+            }
+            
+            hi {
+                font-size: 300%;
+            }
+            
+            subtitle {
+                font-size: 150%;
+            }
+            body {  
+                font-family: "Monospace", monospace;
+            }
+            
+            .boxed1 {
+                font-weight: bold;
+            }
+            
+                        
+            .boxed2 {
+                font-weight: bold;
+            }
+            
+            nav {
+                text-align: center;
+            }
+            
+            nav a, nav p {
+                display: inline-block;
+            }
+            
+        </style>
+        <title>
+            Cite It!    
+        </title>
+    </head>
+
+    <body background="Wooden-Background.jpg">
+        <nav>
+            <a href="/logout"><button>Logout</button></a>
+            <p>Welcome, {{ user.username }}</p>
+            <a href="/viewcitations"><button>View Citations</button></a>
+        </nav>
+        <a id="logo" href="/">
+            <div class="boxed"> 
+            <center>
+                <hi> 
+                    Cite It!
+                </hi>
+   
+            </center>
+            
+            <subtitle> 
+                <center> 
+                    APA Citation Generator
+                </center>
+            </subtitle>
+        </div>
+        </a>
+        
+        
+        <br>
+        
+        {{{ body }}}
+    </body>
+</html>

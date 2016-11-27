@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 
 //setting up function to render a view with an object
 //associate all the handlebars files with the view engine
-app.engine('handlebars', expresshb({defaultLayout:'main'}) );
+app.engine('handlebars', expresshb({defaultLayout:'noauth'}) );
 
 app.set('view engine', 'handlebars');
 
@@ -85,35 +85,75 @@ app.use(passport.session() );
 
 //function that respond to home page
 app.get('/', function(req, res) {
-    res.render('index');
+    if(req.isAuthenticated()) {
+        res.render('index', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('index');
+    }
 } );
 
 app.get('/login', function(req, res) {
-    res.render('login');
+    if(req.isAuthenticated()) {
+        res.render('login', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('login');
+    }
 } );
 
 app.get('/create', function(req, res) {
-    res.render('create');
+    if(req.isAuthenticated()) {
+        res.render('create', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('create');
+    }
 } );
 
 app.get('/citationgeneration', function(req, res) {
-    res.render('citationgeneration');
+    if(req.isAuthenticated()) {
+        res.render('citationgeneration', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('citationgeneration');
+    }
 } );
 
 app.get('/journal', function(req, res) {
-    res.render('journal');
+    if(req.isAuthenticated()) {
+        res.render('journal', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('journal');
+    }
 } );
 
 app.get('/website', function(req, res) {
-    res.render('website');
+    if(req.isAuthenticated()) {
+        res.render('website', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('website');
+    }
 } );
 
 app.get('/book', function(req, res) {
-    res.render('book');
+    if(req.isAuthenticated()) {
+        res.render('book', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('book');
+    }
 } );
 
 app.get('/video', function(req, res) {
-    res.render('video');
+    if(req.isAuthenticated()) {
+        res.render('video', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('video');
+    }
 } );
 
 app.post('/login', passport.authenticate('local'), function(req, res) {
@@ -130,7 +170,41 @@ app.get('/logout', function(req,res) {
 });
 
 app.get('/viewcitations', function(req,res) {
-   res.render('viewCitePage'); 
+    if(req.isAuthenticated()) {
+        res.render('viewCitePage', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('viewCitePage');
+    }
+});
+
+app.post('/addcitation', function(req, res) {
+    // after this
+    User.findByIdAndUpdate( req.user._id, {
+        $push : {
+            "citations": req.body.citation 
+        }
+    },
+    
+        {
+            new : true
+        },
+    function(err, model) {
+        res.sendStatus(200); 
+    }
+    );
+});
+
+app.get('/getcitations', function(req, res) {
+    console.log(req.user.citations);
+    res.status(200).json( {
+        citations: req.user.citations
+    } );
+});
+
+app.post('/deletecitation', function(req, res) {
+    req.user.citations.splice(req.body.index, 1);
+        req.user.save();
 });
 
 
