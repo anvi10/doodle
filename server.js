@@ -12,13 +12,15 @@ mongoose.connect("mongodb://localhost/doodle");
 
 app.use(express.static(__dirname+'/views/static'));
 
+app.use(bodyParser.urlencoded({extended: false}));
+
 //setting up function to render a view with an object
 //associate all the handlebars files with the view engine
 app.engine('handlebars', expresshb({defaultLayout:'main'}) );
 
 app.set('view engine', 'handlebars');
 
-app.use(bodyParser.urlencoded({extended: false}));
+
 
 app.use(cookieparse());
  //anytime you have cookies it will decode them for us
@@ -31,10 +33,12 @@ app.use(expressSesh({
 } ));
 
 passport.serializeUser(function(userobj, done) {
+    console.log("serialize", userobj.username);
     done(null, userobj.username);
 } );
 
 passport.deserializeUser(function(username, done) {
+    console.log("deserialize", username);
     User.findOne({username: username}, function(err, user){
         if(err) {
             done(err);
@@ -50,8 +54,9 @@ passport.deserializeUser(function(username, done) {
         
     });
 } );
-
-passport.use('local', new passlocal(function( username, password, done) {
+/*local names the login strategy that were defining. new passlocal actually gives it the strategy.
+new pass local takes in a funct that will be called to verify if a password matches a users password*/
+passport.use('local', new passlocal(function( username, password, done) { 
     //make sure the user exists
     //make sure that the password matches with what that users password is
     User.findOne( {username:username}, function(err, user) {
@@ -111,6 +116,24 @@ app.get('/video', function(req, res) {
     res.render('video');
 } );
 
+app.post('/login', passport.authenticate('local'), function(req, res) {
+    console.log(req.user.username);
+    res.redirect('/citationgeneration');
+} );
+
+app.get('/logout', function(req,res) {
+    //check that user is authenticated
+    if (req.isAuthenticated() ) {
+         req.logout();   
+    } 
+    res.redirect('/');
+});
+
+app.get('/viewcitations', function(req,res) {
+   res.render('viewCitePage'); 
+});
+
+
 app.post('/createaccount', function(req, res) {
     //store user in database
     
@@ -120,7 +143,7 @@ app.post('/createaccount', function(req, res) {
     User.findOne({username: req.body.username}, function(err, user) { //checks username is unique
         if(user) {
             //username exists
-            res.render('create', {error: 'username exists'});
+            res.render('create', {error: 'Username already exists'});
             //redirect to create account with error
         }
         else {

@@ -1,0 +1,42 @@
+        <script src="storage.js">
+
+        </script>
+
+
+            
+            <ul id="citationList">
+
+            </ul>
+
+        <script>
+          
+            function rendercitations() {
+            
+                
+                var ul = document.getElementById("citationList");
+                
+                ul.innerHTML = "";
+                
+                storageClient.forEach(function(citation, index) {
+                    var li = document.createElement("li");
+                    li.innerText = citation;
+                    
+                    var deleteButton = document.createElement("button");
+                    deleteButton.onclick = function() {
+                        storageClient.deleteCitation(index); 
+                        rendercitations();
+                        console.log("test");
+                    };
+                    deleteButton.innerText= "delete";
+                    
+                    li.appendChild(deleteButton);
+                    
+                    ul.appendChild(li);
+                });
+                
+                document.getElementById("annotation").value = "";
+            }
+         rendercitations();
+        
+        </script>
+  

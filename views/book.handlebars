@@ -1,0 +1,74 @@
+
+        <div class="boxed"> 
+            <center>
+                <hi> 
+                    Cite It!
+                </hi>
+   
+            </center>
+            
+            <subtitle> 
+                <center> 
+                    APA Citation Generator
+                </center>
+            </subtitle>
+        </div>
+        
+        <br>
+        
+        <script src="storage.js">
+
+        </script>
+                
+
+        <script>
+          
+            function handlesubmit() {
+                document.getElementById("citation").innerText = document.getElementById("annotation").value;
+                document.getElementById("annotation").value = "";
+            }
+                     
+            function saveCitation() {
+              storageClient.addCitation(document.getElementById("citation").innerText);
+            }
+        
+        </script>
+
+        <selection>
+            
+            <center>
+                    
+                  Add Annotation:    
+                  <input type="text" id="annotation"><br>
+                  <br>
+                    
+                    <button onclick="handlesubmit()">Generate Citation</button>
+
+            </center>
+            
+            <p id="citation">
+                
+            </p>
+            
+            <div>
+                    <button onclick="saveCitation()">Save My Citation</button>
+                
+                 <a href='/book'> 
+                    <button>Re-Do</button>
+                 </a>
+                
+                <a href='/citationgeneration'> 
+                    <button>Fill Out a Different Citation</button>
+                </a>
+            </div>
+            
+        </selection>
+
+    <a href="/viewcitations"> 
+                <button> 
+                    View My Citations
+                </button>
+        </a>
+
+
+
