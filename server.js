@@ -86,10 +86,10 @@ app.use(passport.session() );
 //function that respond to home page
 app.get('/', function(req, res) {
     if(req.isAuthenticated()) {
-        res.render('index', {user: req.user, layout: 'auth'});
+        res.render('citationgeneration', {user: req.user, layout: 'auth'});
     }
     else {
-        res.render('index');
+        res.render('citationgeneration');
     }
 } );
 
@@ -126,6 +126,34 @@ app.get('/journal', function(req, res) {
     }
     else {
         res.render('journal');
+    }
+} );
+
+app.get('/journalonline', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('journalonline', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('journalonline');
+    }
+} );
+
+
+app.get('/journaldb', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('journaldb', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('journaldb');
+    }
+} );
+
+app.get('/journalprint', function(req, res) {
+    if(req.isAuthenticated()) {
+        res.render('journalprint', {user: req.user, layout: 'auth'});
+    }
+    else {
+        res.render('journalprint');
     }
 } );
 

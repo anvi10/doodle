@@ -1,60 +1,120 @@
+
+        
+        {{#if user}}
+
+            <script src="serverStorage.js">
+                
+            </script>
+       
+
+        {{else }}
+
+
+        <script src="storage.js">
+
+        </script>
+                
+        {{/if}}
+
+        <script>  
+            
+                function handlesubmit() {
+                document.getElementById("citation").innerText = document.getElementById("authorln").value + ", " + document.getElementById("authorfn").value.charAt(0) + ". (" + document.getElementById("year1").value + ", " + document.getElementById("month1").value + " " + document.getElementById("day1").value + "). " + document.getElementById("article").value +". Retrieved " + document.getElementById("year2").value + ", " + document.getElementById("month2").value + " " + document.getElementById("day2").value  
+                   /* 
+                    + ", from \" 
+                    + document.getElementById("url").value + " \" 
+                + document.getElementById("annotation").value; */
+               
+            }
+                     
+            function saveCitation() {
+              storageClient.addCitation(document.getElementById("citation").innerText);
+            }
+            
+            console.log(storageClient);
+        
+        </script>
+
+
         <selection>
             <center>
-                <form method="post" action="/createaccount">
+            
                   Article Title:
-                  <input type="text" name="article"><br>
+                  <input type="text" id="article"><br>
                   <br>
                     
                   Author's Last Name:
-                  <input type="text" name="authorln"> <br>
+                  <input type="text" id="authorln"> <br>
                   Author's First Name:
-                  <input type="text" name="authorfn"><br>
+                  <input type="text" id="authorfn"><br>
                   <br>
                     
                   Date of Publication <br>
                   Day:
-                  <input type="text" name="day1"> <br>
+                  <input type="text" id="day1"> <br>
                   Month:
-                  <input type="text" name="month1"><br>
+                  <input type="text" id="month1"><br>
                   Year:
-                  <input type="text" name="year1"><br>
+                  <input type="text" id="year1"><br>
                   <br>
                     
                   Date Accessed <br>
                   Day:
-                  <input type="text" name="day2"> <br>
+                  <input type="text" id="day2"> <br>
                   Month:
-                  <input type="text" name="month2"><br>
+                  <input type="text" id="month2"><br>
                   Year:
-                  <input type="text" name="year22"><br>
+                  <input type="text" id="year2"><br>
                   <br>
                     
                   Website Title:    
-                  <input type="text" name="webpage"><br>
+                  <input type="text" id="webpage"><br>
                   <br>
                     
                   Publisher / Sponsor:    
-                  <input type="text" name="publisher"><br>
+                  <input type="text" id="publisher"><br>
                   <br>
                     
                   URL:   
-                  <input type="text" name="url"><br>
+                  <input type="text" id="url"><br>
                   <br>
                     
-                  Date Published:    
-                  <input type="text" name="date"><br>
-                  <br>
                     
                   Add Annotation:    
-                  <input type="text" name="annotation"><br>
+                  <input type="text" id="annotation"><br>
                   <br>
                     
-                  <input type="submit" value="Generate Citation">
-                </form>
+                  <button onclick="handlesubmit()">Generate Citation</button>    
+           
+         
             </center>
+            
+                        
+            <p id="citation">
+                
+            </p>
+            
+            <div>
+                <center> 
+                    <button onclick="saveCitation()">Save My Citation</button>
+                
+                 <a href='/website'> 
+                    <button>Re-Do</button>
+                 </a>
+                
+                <a href='/citationgeneration'> 
+                    <button>Fill Out a Different Citation</button>
+                </a>
+                    </center>
+            </div>
+            
         </selection>
         
-        <script src="login.js">
-        
-        </script>
+    <a href="/viewcitations"> 
+                <button> 
+                    View My Citations
+                </button>
+        </a>
+
+
 

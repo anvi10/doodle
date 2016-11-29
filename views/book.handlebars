@@ -18,9 +18,11 @@
 
         <script>
           
+    
             function handlesubmit() {
-                document.getElementById("citation").innerText = document.getElementById("annotation").value;
-                document.getElementById("annotation").value = "";
+
+                document.getElementById("citation").innerText = document.getElementById("annotation").value + " " + document.getElementById("substr").value;
+                //document.getElementById("annotation").value = "";
             }
                      
             function saveCitation() {
@@ -37,6 +39,10 @@
                     
                   Add Annotation:    
                   <input type="text" id="annotation"><br>
+                  <br>
+                
+                  Add substring:    
+                  <input type="text" id="substr"><br>
                   <br>
                     
                     <button onclick="handlesubmit()">Generate Citation</button>
