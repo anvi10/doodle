@@ -102,12 +102,12 @@ app.get('/login', function(req, res) {
     }
 } );
 
-app.get('/create', function(req, res) {
+app.get('/createaccount', function(req, res) {
     if(req.isAuthenticated()) {
-        res.render('create', {user: req.user, layout: 'auth'});
+        res.render('createaccount', {user: req.user, layout: 'auth'});
     }
     else {
-        res.render('create');
+        res.render('createaccount');
     }
 } );
 
