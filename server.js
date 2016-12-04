@@ -184,10 +184,16 @@ app.get('/video', function(req, res) {
     }
 } );
 
-app.post('/login', passport.authenticate('local'), function(req, res) {
-    console.log(req.user.username);
-    res.redirect('/citationgeneration');
-} );
+app.post('/login', function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { return next(err); }
+    if (!user) { return res.render('login', {error: "Username or password incorrect."}); }
+    req.logIn(user, function(err) {
+      if (err) { return next(err); }
+      return res.redirect('/citationgeneration');
+    });
+  })(req, res, next);
+});
 
 app.get('/logout', function(req,res) {
     //check that user is authenticated
@@ -245,7 +251,7 @@ app.post('/createaccount', function(req, res) {
     User.findOne({username: req.body.username}, function(err, user) { //checks username is unique
         if(user) {
             //username exists
-            res.render('create', {error: 'Username already exists'});
+            res.render('createaccount', {error: 'Username already exists'});
             //redirect to create account with error
         }
         else {
