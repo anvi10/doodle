@@ -19,11 +19,7 @@
         <script>  
             
                 function handlesubmit() {
-                document.getElementById("citation").innerText = document.getElementById("authorln").value + ", " + document.getElementById("authorfn").value.charAt(0) + ". (" + document.getElementById("year1").value + ", " + document.getElementById("month1").value + " " + document.getElementById("day1").value + "). " + document.getElementById("article").value +". Retrieved " + document.getElementById("year2").value + ", " + document.getElementById("month2").value + " " + document.getElementById("day2").value  
-                   /* 
-                    + ", from \" 
-                    + document.getElementById("url").value + " \" 
-                + document.getElementById("annotation").value; */
+                document.getElementById("citation").innerText = document.getElementById("authorln").value + ", " + document.getElementById("authorfn").value.charAt(0) + ". (" + document.getElementById("year1").value + ", " + document.getElementById("month1").value + " " + document.getElementById("day1").value + "). " + document.getElementById("article").value +". Retrieved " + document.getElementById("year2").value + ", " + document.getElementById("month2").value + " " + document.getElementById("day2").value  + ", from " + document.getElementById("url").value ;
                
             }
                      
@@ -79,10 +75,6 @@
                   <input type="text" id="url"><br>
                   <br>
                     
-                    
-                  Add Annotation:    
-                  <input type="text" id="annotation"><br>
-                  <br>
                     
                   <button onclick="handlesubmit()">Generate Citation</button>    
            

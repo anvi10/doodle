@@ -1,0 +1,112 @@
+
+        
+        {{#if user}}
+
+            <script src="serverStorage.js">
+                
+            </script>
+       
+
+        {{else }}
+
+
+        <script src="storage.js">
+
+        </script>
+                
+        {{/if}}
+
+        <script>  
+            
+                function handlesubmit() {
+                document.getElementById("citation").innerText = document.getElementById("authorfn").value + " " + document.getElementById("authorln").value + '. "' + document.getElementByID("article").value + '." ' +  document.getElementById("journaltitle").value.italics() + " " + document.getElementById("volume").value; + "." + document.getElementById("issue").value + " (" + document.getElementById("year").value + "): " + document.getElementById("start").value + "-" + document.getElementById("end").value + ". Print." ;
+               
+            }
+                     
+            function saveCitation() {
+              storageClient.addCitation(document.getElementById("citation").innerText);
+            }
+            
+            console.log(storageClient);
+        
+        </script>
+
+
+        <selection>
+            <center>
+            
+                  Article Title:
+                  <input type="text" id="article"><br>
+                  <br>
+                    
+
+                  Author's First Name:
+                  <input type="text" id="authorfn"><br>
+                  Author's Last Name:
+                  <input type="text" id="authorln"> <br>
+                  <br>
+                
+                  Journal Title:
+                  <input type="text" id="journaltitle"><br>
+                  <br>
+                    
+                  Advanced Info<br>
+                  Volume:
+                  <input type="text" id="volume"> <br>
+                  Issue:
+                  <input type="text" id="issue"><br>
+                 
+                    
+                  Date Published <br>
+                  Day:
+                  <input type="text" id="day"> <br>
+                  Month:
+                  <input type="text" id="month"><br>
+                  Year:
+                  <input type="text" id="year"><br>
+                  <br>
+                
+                  Pages<br>
+                  Start:
+                  <input type="text" id="start"> <br>
+                  End:
+                  <input type="text" id="end"><br>
+                    
+                  DOI:    
+                  <input type="text" id="doi"><br>
+                  <br>
+
+                  <button onclick="handlesubmit()">Generate Citation</button>    
+           
+         
+            </center>
+            
+                        
+            <p id="citation">
+                
+            </p>
+            
+            <div>
+                <center> 
+                    <button onclick="saveCitation()">Save My Citation</button>
+                
+                 <a href='/journalprint'> 
+                    <button>Re-Do</button>
+                 </a>
+                
+                <a href='/citationgeneration'> 
+                    <button>Fill Out a Different Citation</button>
+                </a>
+                    </center>
+            </div>
+            
+        </selection>
+        
+    <a href="/viewcitations"> 
+                <button> 
+                    View My Citations
+                </button>
+        </a>
+
+
+

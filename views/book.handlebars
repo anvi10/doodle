@@ -21,7 +21,7 @@
     
             function handlesubmit() {
 
-                document.getElementById("citation").innerText = document.getElementById("annotation").value + " " + document.getElementById("substr").value;
+                document.getElementById("citation").innerText = document.getElementById("authorln").value + ", " + document.getElementById("authorfn").value.charAt(0) + ". (" + document.getElementById("year").value + "). " + document.getElementById("book").value + " (Ed. " + document.getElementById("volume").value + ", Vol. " + document.getElementById("volume").value + "). " + document.getElementById("city").value + ", " + document.getElementById("state").value + ": " + document.getElementById("publisher").value;
                 //document.getElementById("annotation").value = "";
             }
                      
@@ -36,14 +36,37 @@
         <selection>
             
             <center>
-                    
-                  Add Annotation:    
-                  <input type="text" id="annotation"><br>
+                
+                  Author's First Name:
+                  <input type="text" id="authorfn"><br>
+                  Author's Last Name:
+                  <input type="text" id="authorln"> <br>
                   <br>
                 
-                  Add substring:    
-                  <input type="text" id="substr"><br>
+                    
+                  Book Title:    
+                  <input type="text" id="book"><br>
                   <br>
+                
+                  Advanced Info<br>
+                  Volume:
+                  <input type="text" id="volume"> <br>
+                  Edition:
+                  <input type="text" id="edition"><br>
+                <br>
+                
+                    
+                  Publication Info <br>
+                  Publisher:
+                  <input type="text" id="publisher"> <br>
+                  City:
+                  <input type="text" id="city"><br>
+                  State:
+                  <input type="text" id="state"><br>
+                  Year:
+                  <input type="text" id="year"><br>
+                  <br>
+                
                     
                     <button onclick="handlesubmit()">Generate Citation</button>
 
